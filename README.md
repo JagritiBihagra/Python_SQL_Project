@@ -11,12 +11,12 @@ It leverages multiple datasets to analyze sales, customers, and product performa
   * Handled missing values, duplicates, and inconsistent formats.
     
 * **SQL Database Integration**
-  * Designed relational database schema for products, customers, and orders.
+  * Designed relational database schema for the datasets used.
   * Performed queries for insights on revenue, top-selling products, and customer behavior.
 
 * **Python Analytics & Visualization**
   * Data analysis with **Pandas, NumPy**
-  * Visualizations with **Matplotlib / Plotly / Seaborn**
+  * Visualizations with **Matplotlib and Seaborn**
 
 * **Business Insights**
   * Sales trends over time
@@ -30,59 +30,26 @@ It leverages multiple datasets to analyze sales, customers, and product performa
 
 **Tables Used:**
 
-* **Customers** (customer\_id, name, location, signup\_date, …)
-* **Products** (product\_id, category, price, stock, …)
-* **Orders** (order\_id, customer\_id, product\_id, quantity, order\_date, …)
-* **Payments** (payment\_id, order\_id, payment\_method, amount, …)
-* **Geolocation**
-* **order_items**
-* **sellers**
+* **Customers** (customer_id, customer_unique_id, customer_zip_code_prefix, customer_city, customer_state)
+* **Products** (product_id, product_category, product_name_length, product_description_length, product_photos_qty, product_weight_g, product_length_cm, product_height_cm, product_width_cm)
+* **Orders** (order_id, customer_id, order_status, order_purchase_timestamp, order_approved_at, order_delivered_carrier_date, order_delivered_customer_date, order_estimated_delivery_date)
+* **Payments** (order_id, payment_sequential, payment_type, payment_installments, payment_value)
+* **Geolocation** (geolocation_zip_code_prefix, geolocation_lat, geolocation_lng, geolocation_city, geolocation_state)
+* **order_items** (order_id, order_item_id, product_id, seller_id, shipping_limit_date, price, freight_value)
+* **sellers** (seller_id, seller_zip_code_prefix, seller_city, seller_state)
 
 ---
 
 ##  Tech Stack
 
 * **Languages**: Python, SQL
-* **Python Libraries**: Pandas, NumPy, Matplotlib, Seaborn, SQLAlchemy
+* **Python Libraries**: Pandas, NumPy, Matplotlib, Seaborn
 * **Database**: MySQL
 * **Tools**: Jupyter Notebook
 
 
 ---
 
-## 📊 Example Queries
-
-* **Top 5 Customers by Revenue**
-
-  ```sql
-  SELECT c.customer_id, c.name, SUM(o.quantity * p.price) AS total_spent
-  FROM orders o
-  JOIN customers c ON o.customer_id = c.customer_id
-  JOIN products p ON o.product_id = p.product_id
-  GROUP BY c.customer_id, c.name
-  ORDER BY total_spent DESC
-  LIMIT 5;
-  ```
-
-* **Monthly Sales Trend**
-
-  ```sql
-  SELECT DATE_TRUNC('month', order_date) AS month, SUM(quantity * price) AS revenue
-  FROM orders
-  JOIN products ON orders.product_id = products.product_id
-  GROUP BY month
-  ORDER BY month;
-  ```
-
----
-
-## 📈 Sample Visualizations
-
-* Sales trends over time
-* Revenue by category
-* Customer segmentation
-
-*(Add screenshots of your plots here if possible)*
 
 ---
 
