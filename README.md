@@ -51,9 +51,4 @@ It leverages multiple datasets to analyze sales, customers, and product performa
 ---
 
 
----
 
-
----
-
-👉 Do you want me to also generate a **ready-to-use `requirements.txt`** (with common Python + SQL libraries), so you can include it in your repo?
